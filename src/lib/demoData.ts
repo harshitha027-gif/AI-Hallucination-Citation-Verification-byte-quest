@@ -10,4 +10,4 @@ According to the fictional Quantum Computing Institute (https://quantum-institut
 
 The book "Deep Learning" by Ian Goodfellow, Yoshua Bengio, and Aaron Courville (MIT Press, 2016) remains the foundational text for understanding neural networks.`;
 
-export const demoDescription = "This sample contains a mix of real and fabricated citations to demonstrate CiteGuard's verification capabilities. It includes valid academic references, working URLs, fake URLs, and citations that cannot be verified.";
+export const demoDescription = "This sample contains a mix of real and fabricated citations to demonstrate CITEFENCE's verification capabilities. It includes valid academic references, working URLs, fake URLs, and citations that cannot be verified.";

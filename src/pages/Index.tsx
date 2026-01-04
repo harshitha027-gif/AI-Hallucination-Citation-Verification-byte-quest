@@ -54,7 +54,7 @@ const Index = () => {
             {/* Title */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground">
-                CiteGuard
+                CITEFENCE
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
                 Verify AI-generated facts and citations with confidence
@@ -102,7 +102,7 @@ const Index = () => {
               How It Works
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              CiteGuard uses multiple verification methods to ensure accuracy
+              CITEFENCE uses multiple verification methods to ensure accuracy
             </p>
           </motion.div>
 
@@ -163,7 +163,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border">
         <div className="container mx-auto text-center text-muted-foreground text-sm">
-          <p>CiteGuard — AI Citation Verification System</p>
+          <p>CITEFENCE — AI Citation Verification System</p>
         </div>
       </footer>
     </Layout>

@@ -31,9 +31,9 @@ This poses a significant risk for researchers, journalists, students, and anyone
   },
   {
     id: "solution",
-    title: "How CiteGuard Works",
+    title: "How CITEFENCE Works",
     icon: Shield,
-    content: `CiteGuard uses a multi-layered verification approach:
+    content: `CITEFENCE uses a multi-layered verification approach:
 
 **1. Claim Extraction**
 We parse the input text to identify statements that make factual claims—especially those citing sources, statistics, or attributing information to specific entities.
@@ -61,7 +61,7 @@ Each claim receives a status:
     id: "limitations",
     title: "Current Limitations",
     icon: Clock,
-    content: `As a prototype, CiteGuard has several limitations:
+    content: `As a prototype, CITEFENCE has several limitations:
 
 **Technical Constraints**
 • Cannot verify paywalled academic content
@@ -83,7 +83,7 @@ Each claim receives a status:
     id: "future",
     title: "Future Development",
     icon: Lightbulb,
-    content: `Planned improvements for CiteGuard:
+    content: `Planned improvements for CITEFENCE:
 
 **Enhanced Verification**
 • Integration with Google Scholar API
@@ -154,7 +154,7 @@ const Documentation = () => {
               Documentation
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Understanding how CiteGuard verifies AI-generated content
+              Understanding how CITEFENCE verifies AI-generated content
             </p>
           </motion.div>
 
@@ -279,7 +279,7 @@ const Documentation = () => {
             className="mt-12 text-center text-muted-foreground text-sm"
           >
             <p>
-              CiteGuard is a prototype demonstration. 
+              CITEFENCE is a prototype demonstration. 
               Results should be used as guidance, not definitive verification.
             </p>
           </motion.div>
