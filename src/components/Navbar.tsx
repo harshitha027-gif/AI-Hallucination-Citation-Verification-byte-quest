@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { Shield, FileText, Home, Search } from "lucide-react";
+import { FileText, Home, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+import citefenceLogo from "@/assets/citefence-logo.png";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
@@ -20,8 +21,8 @@ export const Navbar = () => {
             to="/" 
             className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
           >
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="text-xl font-semibold tracking-tight">CITEFENCE</span>
+            <img src={citefenceLogo} alt="Citefence Logo" className="h-8 w-8" />
+            <span className="text-xl font-semibold tracking-tight">Citefence</span>
           </Link>
 
           {/* Navigation Links */}

@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Shield, CheckCircle, AlertTriangle, Search, ArrowRight, Zap, Database, Lock } from "lucide-react";
+import { CheckCircle, AlertTriangle, Search, ArrowRight, Zap, Database, Lock } from "lucide-react";
 import { motion } from "framer-motion";
+import citefenceLogo from "@/assets/citefence-logo.png";
 
 const features = [
   {
@@ -46,15 +47,15 @@ const Index = () => {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            {/* Icon */}
-            <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-2xl shadow-glow">
-              <Shield className="h-12 w-12 text-primary" />
+            {/* Logo */}
+            <div className="inline-flex items-center justify-center">
+              <img src={citefenceLogo} alt="Citefence Logo" className="h-24 w-24" />
             </div>
 
             {/* Title */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground">
-                CITEFENCE
+                Citefence
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
                 Verify AI-generated facts and citations with confidence
@@ -102,7 +103,7 @@ const Index = () => {
               How It Works
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              CITEFENCE uses multiple verification methods to ensure accuracy
+              Citefence uses multiple verification methods to ensure accuracy
             </p>
           </motion.div>
 
@@ -163,7 +164,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border">
         <div className="container mx-auto text-center text-muted-foreground text-sm">
-          <p>CITEFENCE — AI Citation Verification System</p>
+          <p>Citefence — AI Citation Verification System</p>
         </div>
       </footer>
     </Layout>
