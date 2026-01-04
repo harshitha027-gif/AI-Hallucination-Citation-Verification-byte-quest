@@ -15,93 +15,90 @@ import {
   Clock
 } from "lucide-react";
 
-const sections = [
+interface ContentBlock {
+  type: "paragraph" | "heading" | "list";
+  text?: string;
+  items?: string[];
+}
+
+interface Section {
+  id: string;
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  content: ContentBlock[];
+}
+
+const sections: Section[] = [
   {
     id: "problem",
     title: "The Problem",
     icon: AlertTriangle,
-    content: `Large Language Models (LLMs) like GPT-4, Claude, and others can generate highly convincing text that may contain factual inaccuracies, fabricated citations, or "hallucinations." These AI systems can:
-
-• Invent citations that don't exist
-• Misattribute quotes to wrong sources  
-• Generate plausible-sounding but false statistics
-• Create fictional academic papers, books, or URLs
-
-This poses a significant risk for researchers, journalists, students, and anyone relying on AI-generated content for accurate information.`
+    content: [
+      { 
+        type: "paragraph", 
+        text: "Large Language Models (LLMs) like GPT-4, Claude, and others can generate highly convincing text that may contain factual inaccuracies, fabricated citations, or hallucinations. These AI systems can:" 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Invent citations that don't exist",
+          "Misattribute quotes to wrong sources",
+          "Generate plausible-sounding but false statistics",
+          "Create fictional academic papers, books, or URLs"
+        ] 
+      },
+      { 
+        type: "paragraph", 
+        text: "This poses a significant risk for researchers, journalists, students, and anyone relying on AI-generated content for accurate information." 
+      }
+    ]
   },
   {
     id: "solution",
     title: "How Citefence Works",
     icon: Shield,
-    content: `Citefence uses a multi-layered verification approach:
-
-**1. Claim Extraction**
-We parse the input text to identify statements that make factual claims—especially those citing sources, statistics, or attributing information to specific entities.
-
-**2. Citation Detection**
-The system recognizes different citation types:
-• URLs and web links
-• Academic citations (Author et al., Year)
-• Book references
-• Statistical claims
-
-**3. Verification Methods**
-Each citation is verified using appropriate methods:
-• **HTTP Validation**: Checks if URLs are accessible
-• **Academic Databases**: Cross-references with CrossRef/Semantic Scholar
-• **Pattern Analysis**: Identifies suspicious patterns in claims
-
-**4. Status Classification**
-Each claim receives a status:
-• ✅ **Verified**: Source confirmed and accessible
-• ⚠️ **Suspicious**: Citation exists but may be misused
-• ❌ **Unverified**: Source cannot be confirmed`
+    content: [
+      { type: "paragraph", text: "Citefence uses a multi-layered verification approach:" },
+      { type: "heading", text: "1. Claim Extraction" },
+      { type: "paragraph", text: "We parse the input text to identify statements that make factual claims—especially those citing sources, statistics, or attributing information to specific entities." },
+      { type: "heading", text: "2. Citation Detection" },
+      { type: "paragraph", text: "The system recognizes different citation types:" },
+      { type: "list", items: ["URLs and web links", "Academic citations (Author et al., Year)", "Book references", "Statistical claims"] },
+      { type: "heading", text: "3. Verification Methods" },
+      { type: "paragraph", text: "Each citation is verified using appropriate methods:" },
+      { type: "list", items: ["HTTP Validation — Checks if URLs are accessible", "Academic Databases — Cross-references with CrossRef/Semantic Scholar", "Pattern Analysis — Identifies suspicious patterns in claims"] },
+      { type: "heading", text: "4. Status Classification" },
+      { type: "paragraph", text: "Each claim receives a status:" },
+      { type: "list", items: ["Verified — Source confirmed and accessible", "Suspicious — Citation exists but may be misused", "Unverified — Source cannot be confirmed"] }
+    ]
   },
   {
     id: "limitations",
     title: "Current Limitations",
     icon: Clock,
-    content: `As a prototype, Citefence has several limitations:
-
-**Technical Constraints**
-• Cannot verify paywalled academic content
-• Limited to English language sources
-• URL checking may not detect content changes
-• Cannot verify physical book existence
-
-**Verification Scope**
-• Does not fact-check the actual claims themselves
-• Cannot detect subtle misinterpretations
-• Relies on source availability at verification time
-
-**API Dependencies**
-• Academic database queries may be rate-limited
-• Some verification methods use simulated responses
-• Real-time web search is not available in all cases`
+    content: [
+      { type: "paragraph", text: "As a prototype, Citefence has several limitations:" },
+      { type: "heading", text: "Technical Constraints" },
+      { type: "list", items: ["Cannot verify paywalled academic content", "Limited to English language sources", "URL checking may not detect content changes", "Cannot verify physical book existence"] },
+      { type: "heading", text: "Verification Scope" },
+      { type: "list", items: ["Does not fact-check the actual claims themselves", "Cannot detect subtle misinterpretations", "Relies on source availability at verification time"] },
+      { type: "heading", text: "API Dependencies" },
+      { type: "list", items: ["Academic database queries may be rate-limited", "Some verification methods use simulated responses", "Real-time web search is not available in all cases"] }
+    ]
   },
   {
     id: "future",
     title: "Future Development",
     icon: Lightbulb,
-    content: `Planned improvements for Citefence:
-
-**Enhanced Verification**
-• Integration with Google Scholar API
-• DOI resolution and verification
-• ISBN validation for books
-• Wayback Machine integration for dead links
-
-**Advanced Analysis**
-• Semantic claim matching
-• Context-aware verification
-• Multi-language support
-• Real-time monitoring
-
-**User Features**
-• Verification history
-• Export reports
-• Browser extension
-• API access for developers`
+    content: [
+      { type: "paragraph", text: "Planned improvements for Citefence:" },
+      { type: "heading", text: "Enhanced Verification" },
+      { type: "list", items: ["Integration with Google Scholar API", "DOI resolution and verification", "ISBN validation for books", "Wayback Machine integration for dead links"] },
+      { type: "heading", text: "Advanced Analysis" },
+      { type: "list", items: ["Semantic claim matching", "Context-aware verification", "Multi-language support", "Real-time monitoring"] },
+      { type: "heading", text: "User Features" },
+      { type: "list", items: ["Verification history", "Export reports", "Browser extension", "API access for developers"] }
+    ]
   }
 ];
 
@@ -134,6 +131,42 @@ const citationTypes = [
   { type: "Academic", icon: FileText, description: "Academic citations are cross-referenced with scholarly databases" },
   { type: "Book", icon: BookOpen, description: "Book references are checked against known publication databases" }
 ];
+
+const RenderContent = ({ content }: { content: ContentBlock[] }) => {
+  return (
+    <div className="space-y-4">
+      {content.map((block, index) => {
+        if (block.type === "paragraph") {
+          return (
+            <p key={index} className="text-muted-foreground leading-relaxed">
+              {block.text}
+            </p>
+          );
+        }
+        if (block.type === "heading") {
+          return (
+            <h4 key={index} className="text-foreground font-semibold mt-6 mb-2">
+              {block.text}
+            </h4>
+          );
+        }
+        if (block.type === "list" && block.items) {
+          return (
+            <ul key={index} className="space-y-2 ml-4">
+              {block.items.map((item, i) => (
+                <li key={i} className="text-muted-foreground flex items-start gap-2">
+                  <span className="text-primary mt-1.5">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        return null;
+      })}
+    </div>
+  );
+};
 
 const Documentation = () => {
   return (
@@ -180,11 +213,7 @@ const Documentation = () => {
                       {section.title}
                     </h2>
                   </div>
-                  <div className="prose prose-invert max-w-none">
-                    <p className="text-muted-foreground whitespace-pre-line leading-relaxed">
-                      {section.content}
-                    </p>
-                  </div>
+                  <RenderContent content={section.content} />
                 </motion.section>
               );
             })}
