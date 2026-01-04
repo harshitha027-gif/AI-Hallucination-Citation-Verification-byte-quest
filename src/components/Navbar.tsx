@@ -21,7 +21,7 @@ export const Navbar = () => {
             className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
           >
             <Shield className="h-6 w-6 text-primary" />
-            <span className="text-xl font-semibold tracking-tight">CiteGuard</span>
+            <span className="text-xl font-semibold tracking-tight">CITEFENCE</span>
           </Link>
 
           {/* Navigation Links */}
